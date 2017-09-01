@@ -2,13 +2,16 @@
 
 <h1>Books</h1>
 
-
+<%= simple_form_for '', url: books_path, method: :get do |f| %>
+  <%= f.input :search, label: "Search by name", input_html: {value: params[:search] } %>
+<% end %>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
+      <th>Published</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +21,7 @@
       <tr>
         <td><%= book.name %></td>
         <td><%= book.description %></td>
+        <td><%= book.published %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
