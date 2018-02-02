@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.where("name LIKE '%#{params[:search]}%'")
+    @books = current_user.books.where("name LIKE '%#{params[:search]}%'")
   end
 
   # GET /books/1
@@ -26,6 +26,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    @book.user = current_user
 
     respond_to do |format|
       if @book.save
