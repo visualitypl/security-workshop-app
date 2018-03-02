@@ -1,11 +1,15 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :add_to_my_books]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :add_to_my_books]
 
   # GET /books
   # GET /books.json
   def index
     @books = current_user.books.where("name LIKE '%#{params[:search]}%'")
+  end
+
+  def list
+    @books = Book.where("name LIKE '%#{params[:search]}%'")
   end
 
   # GET /books/1
@@ -22,11 +26,15 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def add_to_my_books
+    current_user.books << @book
+  end
+
   # POST /books
   # POST /books.json
   def create
     @book = Book.new(book_params)
-    @book.user = current_user
+    @book.users << current_user
 
     respond_to do |format|
       if @book.save
@@ -57,7 +65,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book.destroy
+    current_user.books.destroy(@book)
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
@@ -65,13 +73,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def book_params
+    params.require(:book).permit(:name, :description)
+  end
 end

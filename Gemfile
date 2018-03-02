@@ -7,9 +7,11 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.3'
+gem 'rails', '~> 5.1.0'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+
+gem 'pg'
 
 gem 'devise'
 gem 'jquery-rails'
@@ -39,6 +41,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem 'simple_form'
 
 # FRONTEND:
 gem 'bootstrap-sass', '~> 3.3.7'
