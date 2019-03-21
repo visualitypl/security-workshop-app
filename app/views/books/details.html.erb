@@ -10,7 +10,14 @@
   <%= raw @book.description %>
 </p>
 
+<p>
+  <strong>Who has this book in favourites?</strong>
+  <%= @book.users.pluck(:email).to_sentence %>
+</p>
+
+<p>
+  <strong>Creator of that book:</strong>
+  <%= @book.creator.try(:email) %>
+</p>
+
 <%= link_to 'Back', books_path, class: 'btn btn-default' %>
-<% if current_user && current_user == @book.creator %>
-  <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-default' %>
-<% end %>

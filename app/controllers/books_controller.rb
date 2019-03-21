@@ -1,20 +1,23 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:index, :add_to_my_books]
-  before_action :set_book, only: [:show, :edit, :update, :destroy, :add_to_my_books]
+  before_action :set_book, only: [:show, :details, :edit, :update, :destroy, :add_to_my_books]
 
   # GET /books
   # GET /books.json
   def index
-    @books = current_user.books.where("name LIKE '%#{params[:search]}%'")
+    @books = current_user.books.where("name LIKE '%#{params[:search]}%'").order(id: :asc)
   end
 
   def list
-    @books = Book.where("name LIKE '%#{params[:search]}%'")
+    @books = Book.where("name LIKE '%#{params[:search]}%'").order(id: :asc)
   end
 
   # GET /books/1
   # GET /books/1.json
   def show
+  end
+
+  def details
   end
 
   # GET /books/new
@@ -35,6 +38,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.users << current_user
+    @book.creator = current_user
 
     respond_to do |format|
       if @book.save
@@ -50,7 +54,6 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    p request.session_options[:id]
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }

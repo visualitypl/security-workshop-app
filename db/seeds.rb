@@ -1,3 +1,9 @@
+user = User.create!(email: 'user@example.com', password: 'password')
+
+john = User.create!(email: 'john.doe@example.com', password: 'password')
+jane = User.create!(email: 'jane@example.com', password: 'password')
+robert = User.create!(email: 'robert@example.com', password: 'password')
+
 books = [
   {
     name: 'The Great Gatsby',
@@ -63,5 +69,19 @@ books = [
 
 
 books.each do |book_params|
-  Book.create!(book_params)
+  book = Book.create!(book_params)
+  book.users << jane
 end
+
+user.books << Book.first
+user.books << Book.second
+user.books << Book.last
+
+john.books << Book.first
+
+robert.books << Book.first
+robert.books << Book.last
+robert.books << Book.second
+robert.books << Book.third
+
+Book.last.update(creator: user)

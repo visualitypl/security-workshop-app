@@ -29,8 +29,11 @@
         <td><%= h truncate(book.description, length: 80) %></td>
         <td class="text-right">
           <%= link_to 'Show', book, class: 'btn btn-sm btn-default' %>
-          <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-sm btn-default' %>
-          <%= link_to 'Remove', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          <% if current_user && current_user == book.creator %>
+            <%= link_to 'Details & stats', details_book_path(book), class: 'btn btn-sm btn-default' %>
+            <%= link_to 'Edit', edit_book_path(book), class: 'btn btn-sm btn-default' %>
+          <% end %>
+          <%= link_to 'Remove from list', book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>
