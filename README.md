@@ -1,24 +1,7 @@
-# README
+## The app is a part of a workshop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The code is bad and it contains security vulnerabilities intentionally. Shouldn't be used for other purpose than the workshop.
 
-Things you may want to cover:
+Workshop book: https://visualitypl.github.io/web-apps-security-workshop/
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Workshop repo: https://github.com/visualitypl/web-apps-security-workshop
