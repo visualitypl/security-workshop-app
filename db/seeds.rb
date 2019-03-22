@@ -64,6 +64,11 @@ books = [
     name: 'For Whom the Bell Tolls',
     description: "For Whom the Bell Tolls is Ernest Hemingway’ s brilliant war novel, telling the story of Robert Jordan, a young American fighting with an anti-fascist guerilla unit in Spain. Jordan wages war, forges friendships, and falls deeply in love with the beautiful Maria. First published in 1940, For Whom the Bell Tolls has been adapted for movies, television, and stage. It is widely viewed as Hemingway...",
     published: true
+  },
+  {
+    name: 'Unpublished Book',
+    description: "Top secret!",
+    published: false
   }
 ]
 

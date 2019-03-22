@@ -1,3 +1,5 @@
+<h1>Books catalog</h1>
+
 <%= simple_form_for '', url: list_books_path, method: :get do |f| %>
   <div class="input-group">
     <%= f.input :search, label: false, input_html: {value: params[:search], class: 'form-control', placeholder: "Search by name"} %>

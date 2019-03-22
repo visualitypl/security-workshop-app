@@ -5,11 +5,11 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = current_user.books.where("name LIKE '%#{params[:search]}%'").order(id: :asc)
+    @books = current_user.books.where("name LIKE '%#{params[:search]}%'")
   end
 
   def list
-    @books = Book.where("name LIKE '%#{params[:search]}%'").order(id: :asc)
+    @books = Book.where("published IS TRUE AND name LIKE '%#{params[:search]}%'")
   end
 
   # GET /books/1
